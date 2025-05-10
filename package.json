@@ -4,11 +4,12 @@
         "clean": "rimraf dist",
         "build": "tailwindcss -i ./resources/css/app.css -o ./dist/css/output.css --minify && cpx \"resources/views/index.html\" dist/ && cpx \"assets/**/*\" dist/assets/",
         "predeploy": "npm run clean && npm run build",
-        "deploy": "gh-pages --dist dist --dotfiles"
+        "deploy": "node deploy.js"
     },
     "devDependencies": {
         "autoprefixer": "^10.4.21",
         "cpx": "^1.5.0",
+        "fs-extra": "^11.3.0",
         "gh-pages": "^6.1.0",
         "postcss": "^8.5.3",
         "rimraf": "^5.0.10",
