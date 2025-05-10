@@ -9,6 +9,9 @@
     <!-- Calendly -->
     <link href="https://assets.calendly.com/assets/external/widget.css" rel="stylesheet">
     <script src="https://assets.calendly.com/assets/external/widget.js" type="text/javascript" async></script>
+
+    <!--aos-->
+    <link rel="stylesheet" href="https://unpkg.com/aos@next/dist/aos.css" />
 </head>
 <body class="bg-black text-white min-h-screen box-border">
 
@@ -71,7 +74,7 @@
                     <h1 class="text-5xl md:text-8xl font-bold uppercase">Recent<br><span class="text-gray-800">Projects</span></h1>
                 </div>
                 <div class="flex flex-col gap-3">
-                    <div class="flex gap-2 hover:bg-gray-900 container mx-auto px-6 py-6 border-2 rounded-3xl">
+                    <div data-aos="flip-left" class="flex gap-2 hover:bg-gray-900 container mx-auto px-6 py-6 border-2 rounded-3xl">
                         <div id="projectImage">
                             <img  src="../../assets/project.png" alt="projectImage" class="w-[120px]">
                         </div>
@@ -81,7 +84,7 @@
                             <p>Description: This is a payroll system for local government. The system is built using Django and Java</p>
                         </div>
                     </div>
-                    <div class="flex gap-5 hover:bg-gray-900 container mx-auto px-6 py-6 border-2 rounded-3xl">
+                    <div data-aos="flip-left" class="flex gap-5 hover:bg-gray-900 container mx-auto px-6 py-6 border-2 rounded-3xl">
                         <div id="projectImage">
                             <img src="../../assets/project.png" alt="projectImage" class="w-[120px]">
                         </div>
@@ -91,7 +94,7 @@
                             <p>Description: This is a payroll system for local government. The system is built using Django and Java</p>
                         </div>
                     </div>
-                    <div class="flex gap-5 hover:bg-gray-900 container mx-auto px-6 py-6 border-2 rounded-3xl">
+                    <div data-aos="flip-left" class="flex gap-5 hover:bg-gray-900 container mx-auto px-6 py-6 border-2 rounded-3xl">
                         <div id="projectImage">
                             <img src="../../assets/project.png" alt="projectImage" class="w-[120px]">
                         </div>
@@ -188,6 +191,10 @@
             Calendly.initPopupWidget({ url: 'https://calendly.com/eej-sinining/30min' });
             return false;
         });
+    </script>
+    <script src="https://unpkg.com/aos@next/dist/aos.js"></script>
+    <script>
+        AOS.init();
     </script>
 </body>
 </html>
