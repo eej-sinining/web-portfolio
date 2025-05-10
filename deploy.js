@@ -11,7 +11,7 @@ try {
     mkdir temp-deploy && 
     cd temp-deploy && 
     git init && 
-    git remote add origin https://github.com/YOUR_USERNAME/YOUR_REPO.git && 
+    git remote add origin https://github.com/eej-sinining/web-portfolio.git && 
     git fetch origin gh-pages && 
     git checkout -b gh-pages origin/gh-pages || git checkout --orphan gh-pages
   `, { stdio: 'inherit' });
