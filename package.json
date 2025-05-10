@@ -1,16 +1,17 @@
 {
-  "scripts": {
-    "dev": "tailwindcss -i ./resources/css/app.css -o ./dist/css/output.css --watch",
-    "build": "tailwindcss -i ./resources/css/app.css -o ./dist/css/output.css --minify && xcopy /Y resources\\views\\index.html dist\\ && xcopy /E /Y assets dist\\assets",
-    "clean": "rmdir /S /Q dist",
-    "predeploy": "npm run clean && npm run build",
-    "deploy": "gh-pages -d dist",
-    "serve": "serve dist"
-  },
-  "devDependencies": {
-    "autoprefixer": "^10.4.21",
-    "gh-pages": "^6.3.0",
-    "postcss": "^8.5.3",
-    "tailwindcss": "^3.4.1"
-  }
+    "scripts": {
+        "dev": "tailwindcss -i ./resources/css/app.css -o ./dist/css/output.css --watch",
+        "clean": "rimraf dist",
+        "build": "tailwindcss -i ./resources/css/app.css -o ./dist/css/output.css --minify && cpx \"resources/views/index.html\" dist/ && cpx \"assets/**/*\" dist/assets/",
+        "predeploy": "npm run clean && npm run build",
+        "deploy": "gh-pages --dist dist --dotfiles"
+    },
+    "devDependencies": {
+        "autoprefixer": "^10.4.21",
+        "cpx": "^1.5.0",
+        "gh-pages": "^6.1.0",
+        "postcss": "^8.5.3",
+        "rimraf": "^5.0.10",
+        "tailwindcss": "^3.4.1"
+    }
 }
