@@ -1,13 +1,11 @@
 {
   "scripts": {
     "dev": "tailwindcss -i ./resources/css/app.css -o ./resources/css/output.css --watch",
-    "build": "npx tailwindcss -i ./resources/css/app.css -o ./public/css/output.css --minify",
-    "predeploy": "npm run build",
-  "deploy": "gh-pages -d dist"
+    "build": "npx tailwindcss -i ./resources/css/app.css -o ./resources/css/output.css --minify",
+    "predeploy": "npm run build"
   },
   "devDependencies": {
     "autoprefixer": "^10.4.21",
-    "gh-pages": "^6.3.0",
     "postcss": "^8.5.3",
     "tailwindcss": "^3.4.1"
   }
