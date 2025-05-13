@@ -4,7 +4,7 @@
         "clean": "rimraf dist",
         "build": "tailwindcss -i ./resources/css/app.css -o ./dist/css/output.css --minify && cpx \"resources/views/index.html\" dist/ && cpx \"assets/**/*\" dist/assets/",
         "predeploy": "npm run clean && npm run build",
-        "deploy": "node deploy.js"
+        "deploy": "gh-pages -d dist"
     },
     "devDependencies": {
         "autoprefixer": "^10.4.21",
