@@ -1,0 +1,200 @@
+<!doctype html>
+<html class="scroll-smooth">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link href="/dist/css/output.css" rel="stylesheet">
+    <title>EEJS - CS</title>
+    <link rel="shortcut icon" href="/assets/favicon2.png" type="image/x-icon">
+    <!-- Calendly -->
+    <link href="https://assets.calendly.com/assets/external/widget.css" rel="stylesheet">
+    <script src="https://assets.calendly.com/assets/external/widget.js" type="text/javascript" async></script>
+
+    <!--aos-->
+    <link rel="stylesheet" href="https://unpkg.com/aos@next/dist/aos.css" />
+</head>
+<body class="bg-black text-white min-h-screen box-border">
+
+    <nav class="container mx-auto px-6 py-6 flex justify-center" id="home">
+        <div class="flex space-x-8 text-2xl">
+            <a href="index.html">
+                <ion-icon name="home-outline"></ion-icon>
+            </a>
+            <a href="#projects">
+                <ion-icon name="book-outline"></ion-icon>
+            </a>
+            <a href="#experience">
+                <ion-icon name="briefcase-outline"></ion-icon>
+            </a>
+            <a href="#tools">
+                <ion-icon name="build-outline"></ion-icon>
+            </a>
+        </div>
+    </nav>
+
+    <main class="container mx-auto px-6 py-6 flex gap-2">
+        <div id="profileCard" class="container mx-auto px-6 py-6 w-1/2 h-[560px] border-2 rounded-3xl sticky top-0">
+            <div class="flex justify-center">
+                <img src="../../assets/meoww.jpg" alt="profileImage" class="w-11/12">
+            </div>
+            <div class="px-6 mt-5">
+                <h3 class="text-2xl font-bold mb-3">Ean Endrew Jade Sinining</h3>
+                <p class="italic text-justify">An aspiring web developer passionate about creating practical websites and systems using JavaScript, Django, and Shopify.</p>
+            </div>
+        </div>
+
+        <div class="container mx-auto px-6 py-6 border-2 rounded-3xl">
+            <section class="container mx-auto px-6 py-6 mb-2">
+                <div class="mb-5">
+                    <h1 class="text-5xl md:text-8xl font-bold uppercase">Computer <span class="text-gray-800">Science</span></h1>
+                    <p class="mt-8">An aspiring web developer passionate about creating practical websites and systems using JavaScript, Django, and Shopify.</p>
+                </div>
+                <div class="mt-7" id="inquireBtn">
+                    <button class="bg-blue-300 hover:bg-amber-400 text-gray-800 font-bold py-2 px-4 rounded mr-2">View my resume</button>
+                    <button class="bg-blue-300 hover:bg-amber-400 text-gray-800 font-bold py-2 px-4 rounded mr-2" id="scheduleBtn">Schedule a Call</button>
+                </div>
+                <div class="flex flex-wrap mt-9 gap-5">
+                    <div class="border-2 rounded-3xl p-5" id="extrablck">
+                        <h1 class="text-2xl font-bold">+6</h1>
+                        <p class="uppercase">months of experience</p>
+                    </div>
+                    <div class="border-2 rounded-3xl p-5" id="extrablck>
+                        <h1 class="text-2xl font-bold">+1</h1>
+                        <p class="uppercase">projects completed</p>
+                    </div>
+                    <div class="border-2 rounded-3xl p-5" id="extrablck>
+                        <h1 class="text-2xl font-bold">+3</h1>
+                        <p class="uppercase">commission client's</p>
+                    </div>
+                </div>
+            </section>
+
+            <section class="container mx-auto px-6 py-6" id="projects">
+                <div class="mt-5 mb-10">
+                    <h1 class="text-5xl md:text-8xl font-bold uppercase">Recent<br><span class="text-gray-800">Projects</span></h1>
+                </div>
+                <div class="flex flex-col gap-3">
+                    <div data-aos="flip-left" class="flex gap-2 hover:bg-gray-900 container mx-auto px-6 py-6 border-2 rounded-3xl">
+                        <div id="projectImage">
+                            <img  src="../../assets/project.png" alt="projectImage" class="w-[120px]">
+                        </div>
+                        <div>
+                            <h1 class="text-2xl font-bold mb-3">Local Government Payroll</h1>
+                            <p class="italic text-justify">Role: Fullstack Developer</p>
+                            <p>Description: This is a payroll system for local government. The system is built using Django and Java</p>
+                        </div>
+                    </div>
+                    <div data-aos="flip-left" class="flex gap-5 hover:bg-gray-900 container mx-auto px-6 py-6 border-2 rounded-3xl">
+                        <div id="projectImage">
+                            <img src="../../assets/project.png" alt="projectImage" class="w-[120px]">
+                        </div>
+                        <div>
+                            <h1 class="text-2xl font-bold mb-3">Local Government Payroll</h1>
+                            <p class="italic text-justify">Role: Fullstack Developer</p>
+                            <p>Description: This is a payroll system for local government. The system is built using Django and Java</p>
+                        </div>
+                    </div>
+                    <div data-aos="flip-left" class="flex gap-5 hover:bg-gray-900 container mx-auto px-6 py-6 border-2 rounded-3xl">
+                        <div id="projectImage">
+                            <img src="../../assets/project.png" alt="projectImage" class="w-[120px]">
+                        </div>
+                        <div>
+                            <h1 class="text-2xl font-bold mb-3">Local Government Payroll</h1>
+                            <p class="italic text-justify">Role: Fullstack Developer</p>
+                            <p>Description: This is a payroll system for local government. The system is built using Django and Java</p>
+                        </div>
+                    </div>
+                </div>
+            </section>
+
+            <section class="container mx-auto px-6 py-6" id="experience">
+                <div class="mt-5 mb-10">
+                    <h1 class="text-5xl md:text-8xl font-bold uppercase">Work<br><span class="text-gray-800">experience</span></h1>
+                </div>
+                <div class="flex flex-col gap-3">
+                    <div class="flex gap-2 hover:bg-gray-900 container mx-auto px-6 py-6 border-2 rounded-3xl">
+                        <div>
+                            <h1 class="text-2xl font-bold mb-3">Shopify Store Builder</h1>
+                            <p class="italic text-justify">Role: Part-time Virtual Assistant | Jun 2023 - Dec 2023</p>
+                            <p>Description: I assist Shopify store owners with end-to-end setup, theme customization, product listing, app installation, and making sure their stores are mobile-friendly and ready to sell.</p>
+                        </div>
+                    </div>
+                </div>
+            </section>
+
+            <section class="container mx-auto px-6 py-6" id="tools">
+                <div class="mt-5 mb-10">
+                    <h1 class="text-5xl md:text-8xl font-bold uppercase">tech<br><span class="text-gray-800">stack</span></h1>
+                </div>
+                <div class="flex flex-col gap-3">
+                    <div class="flex flex-col md:flex-row gap-4 container mx-auto px-6 py-6">
+                        <div class="w-full md:w-1/3 border-2 rounded-2xl px-6 py-6 hover:bg-gray-900">
+                            <h1 class="text-2xl font-bold uppercase">languages</h1>
+                            <div class="pl-5">
+                                <ul class="list-disc">
+                                    <li>HTML</li>
+                                    <li>CSS</li>
+                                    <li>JavaScript</li>
+                                    <li>Python</li>
+                                    <li>Java</li>
+                                </ul>
+                            </div>
+                        </div>
+                        <div class="w-full md:w-1/3 border-2 rounded-2xl px-6 py-6 hover:bg-gray-900">
+                            <h1 class="text-2xl font-bold uppercase">frameworks</h1>
+                            <div class="pl-5">
+                                <ul class="list-disc">
+                                    <li>Django</li>
+                                    <li>TailwindCSS</li>
+                                    <li>Bootstrap</li>
+                                    <li>Git</li>
+                                    <li>Github</li>
+                                </ul>
+                            </div>
+                        </div>
+                        <div class="w-full md:w-1/3 border-2 rounded-2xl px-6 py-6 hover:bg-gray-900">
+                            <h1 class="text-2xl font-bold uppercase">tools</h1>
+                            <div class="pl-5">
+                                <ul class="list-disc">
+                                    <li>Vs Code</li>
+                                    <li>Git</li>
+                                    <li>Github</li>
+                                    <li>Vercel</li>
+                                </ul>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </section>
+        </div>
+    </main>
+
+    <div id="scrollToTop">
+        <a href="#home" class="fixed right-4 bottom-10 h-10 bg-blue-300 hover:bg-amber-400 text-gray-800 font-bold py-2 px-4 rounded">
+            <ion-icon name="arrow-up-outline" class="text-black"></ion-icon>
+        </a>
+    </div>
+
+    <footer>
+        <div>
+            <h1 class="flex justify-center border-t-2 py-2">© 2025 EEJS - CS. All rights reserved.</h1>
+        </div>
+    </footer>
+
+    <!-- Ionicons -->
+    <script type="module" src="https://unpkg.com/ionicons@7.1.0/dist/ionicons/ionicons.esm.js"></script>
+    <script nomodule src="https://unpkg.com/ionicons@7.1.0/dist/ionicons/ionicons.js"></script>
+
+    <!-- Calendly -->
+    <script type="text/javascript">
+        document.getElementById("scheduleBtn").addEventListener("click", function() {
+            Calendly.initPopupWidget({ url: 'https://calendly.com/eej-sinining/30min' });
+            return false;
+        });
+    </script>
+    <script src="https://unpkg.com/aos@next/dist/aos.js"></script>
+    <script>
+        AOS.init();
+    </script>
+</body>
+</html>
