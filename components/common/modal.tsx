@@ -35,7 +35,7 @@ export default function Modal({ isOpen, onClose, children }: ModalProps) {
         <motion.div
           role="dialog"
           aria-modal="true"
-          className="fixed inset-0 z-50 flex items-center justify-center bg-black bg-opacity-70 p-4"
+          className="fixed inset-0 z-50 flex items-center justify-center bg-black bg-opacity-80 p-4"
           onClick={onClose}
           variants={backdropVariants}
           initial="hidden"
@@ -43,7 +43,11 @@ export default function Modal({ isOpen, onClose, children }: ModalProps) {
           exit="hidden"
         >
           <motion.div
-            className="bg-white rounded-lg shadow-lg max-w-7xl w-full max-h-[90vh] p-6 relative flex gap-8 pr-12 overflow-auto"
+            className="
+              bg-gray-900 text-white rounded-lg shadow-[0_0_20px_6px_rgba(255,255,255,0.3)]
+              max-w-7xl w-full max-h-[90vh] p-6 relative flex gap-8 pr-12 overflow-auto
+              backdrop-blur-sm
+            "
             onClick={(e) => e.stopPropagation()}
             variants={modalVariants}
             initial="hidden"
@@ -52,7 +56,11 @@ export default function Modal({ isOpen, onClose, children }: ModalProps) {
             transition={{ duration: 0.25, ease: "easeOut" }}
           >
             <button
-              className="absolute top-4 right-4 text-gray-600 hover:text-gray-900 text-2xl font-bold z-50"
+              className="
+                absolute top-4 right-4 text-white hover:text-gray-300
+                text-2xl font-bold z-50
+                transition-colors duration-200
+              "
               onClick={onClose}
               aria-label="Close modal"
             >

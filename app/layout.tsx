@@ -3,6 +3,7 @@ import { Geist, Geist_Mono } from "next/font/google";
 import "./globals.css";
 import Header from "@/components/layout/Header";
 import Footer from "@/components/layout/Footer";
+import GalaxyBackground from "@/styles/GalaxyBackground";
 
 const geistSans = Geist({
   variable: "--font-geist-sans",
@@ -13,7 +14,6 @@ const geistMono = Geist_Mono({
   variable: "--font-geist-mono",
   subsets: ["latin"],
 });
-
 
 export const metadata = {
   title: 'EEJS | Portfolio',
@@ -28,17 +28,17 @@ export default function RootLayout({
   return (
     <html lang="en">
       <body className={`${geistSans.variable} ${geistMono.variable} antialiased`}>
-        <div className="min-h-screen flex flex-col">
-          {/* Header */}
+        
+        {/* Galaxy Background (Client Component) */}
+        <GalaxyBackground />
+
+        <div className="min-h-screen flex flex-col relative z-10">
           <Header />
 
-          {/* Dynamic Content */}
           <main className="flex-1 pt-7 px-4">
             {children}
           </main>
 
-
-          {/* Footer */}
           <Footer />
         </div>
       </body>

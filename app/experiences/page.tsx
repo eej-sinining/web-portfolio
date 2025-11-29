@@ -11,22 +11,22 @@ export default function Experience() {
       animate={{ opacity: 1, y: 0 }}
       transition={{ duration: 0.8, ease: "easeOut" }}
     >
-      <h1 className="text-4xl font-bold text-gray-900 mb-10 text-left pl-42">
+      <h1 className="text-4xl font-bold text-white mb-10 text-left pl-42">
         Experiences
       </h1>
 
-      <div className="max-w-3xl mx-auto relative border-l-2 border-gray-300 pl-16 space-y-10">
+      <div className="max-w-3xl mx-auto relative border-l-2 border-gray-600 pl-16 space-y-10">
         {experiences.map((exp: ExperienceType, index: number) => (
           <div key={index} className="relative">
             {/* Heartbeat Glow Dot */}
             <motion.span
-              className="absolute top-2 -left-18 w-4 h-4 bg-gray-900 rounded-full border-2 border-white"
+              className="absolute top-2 -left-18 w-4 h-4 bg-white rounded-full border-2 border-gray-800"
               animate={{
                 scale: [1, 1.4, 1],
                 boxShadow: [
-                  "0 0 0 0 rgba(0, 0, 0, 0)",
-                  "0 0 8px 4px rgba(0, 0, 0, 0.3)",
-                  "0 0 0 0 rgba(0, 0, 0, 0)",
+                  "0 0 0 0 rgba(255, 255, 255, 0)",
+                  "0 0 8px 4px rgba(255, 255, 255, 0.3)",
+                  "0 0 0 0 rgba(255, 255, 255, 0)",
                 ],
               }}
               transition={{
@@ -37,13 +37,13 @@ export default function Experience() {
               }}
             ></motion.span>
 
-            <h2 className="text-xl font-semibold">{exp.role}</h2>
+            <h2 className="text-xl font-semibold text-white">{exp.role}</h2>
             {exp.company && (
-              <h3 className="text-gray-700">{exp.company}</h3>
+              <h3 className="text-gray-300">{exp.company}</h3>
             )}
-            <p className="text-sm text-gray-500 mb-2">{exp.period}</p>
+            <p className="text-sm text-gray-400 mb-2">{exp.period}</p>
 
-            <p className="text-gray-700 text-lg leading-relaxed">{exp.description}</p>
+            <p className="text-gray-300 text-lg leading-relaxed">{exp.description}</p>
           </div>
         ))}
       </div>
