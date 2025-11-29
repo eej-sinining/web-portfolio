@@ -9,7 +9,7 @@ export const experiences: Experience[] = [
   {
       role: "Jr. Software Developer",
       company: "Aquila Softwares Corporation",
-      period: "August 2023 – Present",
+      period: "August 2025 – Present",
       description:
         "Building and maintaining robust backend systems using Django and ASP.NET. Focused on API development, database design, and server-side logic.",
     },
