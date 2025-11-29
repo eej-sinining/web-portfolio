@@ -4,6 +4,7 @@ import "./globals.css";
 import Header from "@/components/layout/Header";
 import Footer from "@/components/layout/Footer";
 import GalaxyBackground from "@/styles/GalaxyBackground";
+import Script from "next/script"; // <-- ADD THIS
 
 const geistSans = Geist({
   variable: "--font-geist-sans",
@@ -29,6 +30,9 @@ export default function RootLayout({
     <html lang="en">
       <body className={`${geistSans.variable} ${geistMono.variable} antialiased`}>
         
+        {/* Load external script ON ALL PAGES */}
+        <Script src="https://www.noupe.com/embed/019acfb6e1107c088bab479e116aafd6d241.js" />
+
         {/* Galaxy Background (Client Component) */}
         <GalaxyBackground />
 
