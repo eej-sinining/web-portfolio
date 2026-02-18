@@ -15,15 +15,16 @@ export default function Contact() {
       </h1>
 
       <div className="flex flex-col md:flex-row md:space-x-16">
-        {/* Left side - text content */}
-        <div className="md:w-1/2 text-left mb-10 md:mb-0 mt-6">
-          <p className="text-gray-300 max-w-lg">
+        {/* Left side */}
+        <div className="md:w-1/2 text-left mt-6 mb-8 md:mb-0">
+          {/* ✅ added pb-2 for breathing room below the description */}
+          <p className="text-gray-300 max-w-lg pb-2">
             Got a question or a project idea? Feel free to reach out.
           </p>
         </div>
 
-        {/* Right side - form, moved up ~48px */}
-        <form className="md:w-1/2 space-y-4 -mt-12">
+        {/* Right side — ✅ removed -mt-12 which caused overlap on mobile */}
+        <form className="md:w-1/2 space-y-4">
           <input
             type="text"
             placeholder="Your Name"

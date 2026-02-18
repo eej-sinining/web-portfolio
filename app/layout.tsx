@@ -34,7 +34,7 @@ export default function RootLayout({
         <Script src="https://www.noupe.com/embed/019acfb6e1107c088bab479e116aafd6d241.js" />
 
         {/* Galaxy Background (Client Component) */}
-        <GalaxyBackground />
+        {/* <GalaxyBackground /> */}
 
         <div className="min-h-screen flex flex-col relative z-10">
           <Header />

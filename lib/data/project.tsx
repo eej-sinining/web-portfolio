@@ -4,6 +4,7 @@ export interface Project {
   link: string;
   image?: string;
   category?: "main" | "dev-tools";
+  tags?: ("API-based" | "Web App" | "Machine Learning/AI")[];
 }
 
 export const projects: Project[] = [
@@ -24,6 +25,7 @@ export const projects: Project[] = [
     link: "#",
     image: "/images/financetrackerpfp.jpg",
     category: "main",
+    tags: ["API-based"],
   },
   {
     name: "Real-Time Inspector",
@@ -54,5 +56,6 @@ Perfect for developers working with real-time applications who need a quick, rel
     link: "https://eej-sinining.github.io/Personal-RealTime-Tester/",
     image: "/images/realtime-tester.png",
     category: "dev-tools",
+    tags: ["Web App"],
   },
 ];

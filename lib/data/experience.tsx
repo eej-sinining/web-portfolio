@@ -7,14 +7,14 @@ export interface Experience {
 
 export const experiences: Experience[] = [
   {
-      role: "Jr. Software Developer",
+      role: "Jr. Software Engineer",
       company: "Aquila Softwares Corporation",
       period: "August 2025 – Present",
       description:
         "Building and maintaining robust backend systems using Django and ASP.NET. Focused on API development, database design, and server-side logic.",
     },
     {
-      role: "Django Backend Developer",
+      role: "Intern Backend Developer",
       company: "Aquila Softwares Corporation",
       period: "July 2025 – August 2025",
       description:
