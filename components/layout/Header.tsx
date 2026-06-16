@@ -1,96 +1,110 @@
 "use client";
 
 import Link from "next/link";
-import { useState } from "react";
+import { useState, useEffect } from "react";
 import { usePathname } from "next/navigation";
+import { profile } from "@/lib/data/profile";
+import ThemeToggle from "@/components/common/ThemeToggle";
+import PersonaSwitcher from "@/components/common/PersonaSwitcher";
+import { usePersona } from "@/components/common/PersonaProvider";
+
+const devNavLinks = [
+  { href: "#about", label: "About" },
+  { href: "#experience", label: "Experience" },
+  { href: "#stack", label: "Stack" },
+  { href: "#projects", label: "Projects" },
+  { href: "#certificates", label: "Certs" },
+  { href: "#contact", label: "Contact" },
+];
+
+const vaNavLinks = [
+  { href: "#about", label: "About" },
+  { href: "#experience", label: "Experience" },
+  { href: "#services", label: "Services" },
+  { href: "#stack", label: "Toolkit" },
+  { href: "#projects", label: "Work" },
+  { href: "#contact", label: "Contact" },
+];
 
 export default function Header() {
   const [open, setOpen] = useState(false);
+  const [scrolled, setScrolled] = useState(false);
   const pathname = usePathname();
+  const { isDeveloper } = usePersona();
+  const isHome = pathname === "/";
+  const navLinks = isDeveloper ? devNavLinks : vaNavLinks;
 
-  const isActive = (href: string) => pathname === href;
+  useEffect(() => {
+    const onScroll = () => setScrolled(window.scrollY > 20);
+    window.addEventListener("scroll", onScroll, { passive: true });
+    return () => window.removeEventListener("scroll", onScroll);
+  }, []);
 
   return (
     <header
-      className="
-        w-full fixed top-0 left-0 z-50
-        bg-white/10
-        backdrop-blur-sm
-        border border-white/20
-        shadow-[0_0_10px_2px_rgba(255,255,255,0.15)]
-      "
+      className={`fixed top-0 left-0 right-0 z-50 transition-all duration-300 ${
+        scrolled
+          ? "bg-background/80 backdrop-blur-md border-b border-border-subtle"
+          : "bg-transparent"
+      }`}
     >
-      <nav className="max-w-6xl mx-auto flex items-center justify-between py-12 px-6">
-        
-        {/* Logo */}
-        <Link href="/" className="text-2xl font-semibold text-white leading-none drop-shadow-md">
-          EEJS
+      <nav className="max-w-3xl mx-auto flex items-center justify-between py-5 px-6">
+        <Link
+          href="/"
+          className="text-sm font-semibold tracking-tight text-foreground hover:text-accent transition-colors"
+        >
+          {profile.shortName}
         </Link>
 
-        {/* Desktop Menu */}
-        <ul className="hidden md:flex gap-6 text-white">
-          {[
-            { href: "/", label: "Home" },
-            { href: "/about", label: "About" },
-            { href: "/certificates", label: "Certificates" },
-            { href: "/projects", label: "Projects" },
-            { href: "/experiences", label: "Experiences" },
-            { href: "/contact", label: "Contact" },
-          ].map(({ href, label }) => (
-            <li key={href}>
-              <Link
-                href={href}
-                className={`
-                  text-lg leading-none relative border-b-2 border-transparent
-                  hover:border-white/70 transition-colors duration-300
-                  ${isActive(href) ? "border-white font-semibold" : ""}
-                `}
-              >
-                {label}
-              </Link>
-            </li>
-          ))}
-        </ul>
+        <div className="flex items-center gap-2">
+          {isHome && (
+            <ul className="hidden lg:flex items-center gap-5 mr-1">
+              {navLinks.map(({ href, label }) => (
+                <li key={href}>
+                  <a
+                    href={href}
+                    className="text-sm text-muted hover:text-foreground transition-colors"
+                  >
+                    {label}
+                  </a>
+                </li>
+              ))}
+            </ul>
+          )}
 
-        {/* Mobile Button */}
-        <button
-          className="md:hidden block text-white text-2xl leading-none"
-          onClick={() => setOpen(!open)}
-          aria-label="Toggle menu"
-        >
-          {open ? "✖" : "☰"}
-        </button>
+          <PersonaSwitcher />
+          <ThemeToggle />
+
+          {isHome && (
+            <button
+              className="lg:hidden p-2 text-muted hover:text-foreground transition-colors"
+              onClick={() => setOpen(!open)}
+              aria-label="Toggle menu"
+            >
+              <svg className="w-5 h-5" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth={1.5}>
+                {open ? (
+                  <path strokeLinecap="round" strokeLinejoin="round" d="M6 18L18 6M6 6l12 12" />
+                ) : (
+                  <path strokeLinecap="round" strokeLinejoin="round" d="M4 6h16M4 12h16M4 18h16" />
+                )}
+              </svg>
+            </button>
+          )}
+        </div>
       </nav>
 
-      {/* Mobile Menu */}
-      {open && (
-        <div
-          className="
-            md:hidden
-            bg-white/10
-            backdrop-blur-sm
-            border border-white/20
-            shadow-[0_0_10px_2px_rgba(255,255,255,0.15)]
-            p-4
-          "
-        >
-          <ul className="flex flex-col gap-4 text-white">
-            {[
-              { href: "/", label: "Home" },
-              { href: "/about", label: "About" },
-              { href: "/certificates", label: "Certificates" },
-              { href: "/projects", label: "Projects" },
-              { href: "/experiences", label: "Experiences" },
-              { href: "/contact", label: "Contact" },
-            ].map(({ href, label }) => (
+      {open && isHome && (
+        <div className="lg:hidden border-t border-border-subtle bg-background/95 backdrop-blur-md">
+          <ul className="flex flex-col gap-1 px-6 py-4">
+            {navLinks.map(({ href, label }) => (
               <li key={href}>
-                <Link
+                <a
                   href={href}
                   onClick={() => setOpen(false)}
-                  className={`text-lg ${isActive(href) ? "font-bold underline" : ""}`}
+                  className="block py-2 text-sm text-muted hover:text-foreground transition-colors"
                 >
                   {label}
-                </Link>
+                </a>
               </li>
             ))}
           </ul>

@@ -1,125 +1,169 @@
 "use client";
 
-import { useState, useEffect } from "react";
-import { motion, AnimatePresence } from "framer-motion";
-import { socialLinks } from "@/lib/data/socialLink"; // adjust path as needed
+import { motion, AnimatePresence, useReducedMotion } from "framer-motion";
+import { profile } from "@/lib/data/profile";
+import { vaProfile } from "@/lib/data/vaProfile";
+import { socialLinks } from "@/lib/data/socialLink";
+import { usePersona } from "@/components/common/PersonaProvider";
+import { heroStagger, fadeUp, defaultTransition, quickTransition } from "@/lib/motion";
 
 export default function Hero() {
-  const roles = [
-    "Computer Science Student",
-    "Software Developer",
-    "Freelancer",
-    "Shopify Store Builder",
-  ];
+  const { isDeveloper, isVa, setPersona } = usePersona();
+  const prefersReduced = useReducedMotion();
 
-  const [index, setIndex] = useState(0);
-  const [hovered, setHovered] = useState<string | null>(null);
+  const content = isDeveloper
+    ? {
+        label: "Software Engineer",
+        roles: profile.roles,
+        tagline: profile.tagline,
+        cta: "Send Email",
+        secondary: "View Resume",
+        secondaryHref: socialLinks.find((l) => l.label === "Resume")?.href,
+      }
+    : {
+        label: vaProfile.label,
+        roles: vaProfile.roles,
+        tagline: vaProfile.tagline,
+        cta: vaProfile.ctaPrimary,
+        secondary: "See Services",
+        secondaryHref: "#services",
+      };
 
-  useEffect(() => {
-    const interval = setInterval(() => {
-      setIndex((prev) => (prev + 1) % roles.length);
-    }, 3500);
-    return () => clearInterval(interval);
-  }, []);
+  const motionProps = prefersReduced
+    ? {}
+    : {
+        initial: "hidden" as const,
+        animate: "visible" as const,
+        variants: heroStagger,
+      };
 
   return (
-    <motion.section
-      className="flex flex-col items-center justify-center text-center py-24 px-6 min-h-screen"
-      initial={{ opacity: 0, y: 40 }}
-      animate={{ opacity: 1, y: 0 }}
-      transition={{ duration: 0.8, ease: "easeOut" }}
-    >
-      <h1
-        className="text-6xl font-extrabold mb-6 tracking-tight text-white drop-shadow-[0_0_10px_rgba(255,255,255,0.35)]"
-        style={{ fontFamily: "'Geist Sans', sans-serif", paddingLeft: "1rem" }}
-      >
-        Greetings! <span className="inline-block animate-wave">👋</span>
-      </h1>
-
-      <p
-        className="text-3xl font-semibold mb-8 leading-relaxed max-w-lg text-slate-200 whitespace-nowrap"
-        style={{ fontFamily: "'Geist Mono', monospace", letterSpacing: "0.04em" }}
-      >
-        I'm{" "}
-        <span className="text-cyan-300 underline decoration-cyan-500 decoration-2 underline-offset-2 drop-shadow-[0_0_12px_rgba(0,255,255,0.5)]">
-          Ean Endrew Jade Sinining
-        </span>
-        ,
-      </p>
-
-      <div className="relative h-16 w-72 overflow-hidden pl-0">
-        <AnimatePresence mode="wait">
-          <motion.p
-            key={index}
-            initial={{ y: 30, opacity: 0 }}
-            animate={{ y: 0, opacity: 1 }}
-            exit={{ y: -30, opacity: 0 }}
-            transition={{ duration: 0.6, ease: "easeInOut" }}
-            className="absolute w-full text-2xl font-semibold text-slate-300 leading-8 tracking-wide drop-shadow-[0_0_10px_rgba(255,255,255,0.4)]"
-            style={{ fontFamily: "'Geist Mono', monospace" }}
-          >
-            {roles[index]}
-          </motion.p>
-        </AnimatePresence>
-      </div>
-
-      {/* Social Links */}
-      <div className="mt-8 flex space-x-6 justify-center">
-        {socialLinks.map(({ href, label, icon }) => (
-          <motion.div
-            key={label}
-            onMouseEnter={() => setHovered(label)}
-            onMouseLeave={() => setHovered(null)}
-            className="flex flex-col items-center cursor-pointer"
-            whileHover={{ scale: 1.15, color: "#22d3ee" }} // cyan-400 or whatever color you want
-            transition={{ type: "spring", stiffness: 300, damping: 20 }}
-          >
-            <a
-              href={href}
-              target="_blank"
-              rel="noopener noreferrer"
-              aria-label={label}
-              className="text-[var(--foreground)]"
+    <section className="relative min-h-[90vh] flex flex-col justify-center max-w-3xl mx-auto px-6 pt-24 pb-16">
+      <motion.div {...motionProps}>
+        <motion.div className="flex items-center gap-3 mb-4" variants={fadeUp}>
+          <AnimatePresence mode="wait">
+            <motion.p
+              key={content.label}
+              className="section-label"
+              initial={prefersReduced ? false : { opacity: 0, y: 8 }}
+              animate={{ opacity: 1, y: 0 }}
+              exit={prefersReduced ? undefined : { opacity: 0, y: -8 }}
+              transition={quickTransition}
             >
-              {icon}
-            </a>
+              {content.label}
+            </motion.p>
+          </AnimatePresence>
+          <span className="text-border">·</span>
+          <button
+            onClick={() => setPersona(isDeveloper ? "va" : "developer")}
+            className="text-xs font-mono text-subtle hover:text-accent transition-colors"
+          >
+            {isDeveloper ? "Also a Shopify VA →" : "← Software Engineer side"}
+          </button>
+        </motion.div>
 
-            <AnimatePresence>
-              {hovered === label && (
-                <motion.span
-                  initial={{ opacity: 0, y: 12, scale: 0.95 }}
-                  animate={{ opacity: 1, y: 0, scale: 1 }}
-                  exit={{ opacity: 0, y: 12, scale: 0.95 }}
-                  transition={{ duration: 0.45, ease: "easeInOut" }}
-                  className="mt-1 text-cyan-300 text-sm font-semibold underline decoration-cyan-500 decoration-2 underline-offset-2 drop-shadow-[0_0_12px_rgba(0,255,255,0.7)] select-none pointer-events-none"
-                >
-                  {label}
-                </motion.span>
-              )}
-            </AnimatePresence>
+        <motion.h1
+          className="text-4xl sm:text-5xl font-semibold tracking-tight text-foreground leading-tight"
+          variants={fadeUp}
+        >
+          {profile.name}
+        </motion.h1>
+
+        <motion.p
+          className="mt-3 text-sm text-muted font-mono"
+          variants={fadeUp}
+        >
+          {profile.location}
+        </motion.p>
+
+        <AnimatePresence mode="wait">
+          <motion.div
+            key={isDeveloper ? "dev-roles" : "va-roles"}
+            initial={prefersReduced ? false : { opacity: 0, y: 12 }}
+            animate={{ opacity: 1, y: 0 }}
+            exit={prefersReduced ? undefined : { opacity: 0, y: -12 }}
+            transition={quickTransition}
+          >
+            <p className="mt-6 text-lg text-muted leading-relaxed max-w-xl">
+              {content.roles.join(" \\ ")}
+            </p>
+            <p className="mt-4 text-base text-subtle leading-relaxed max-w-lg">
+              {content.tagline}
+            </p>
           </motion.div>
-        ))}
-      </div>
+        </AnimatePresence>
 
-      <style>{`
-        @keyframes wave {
-          0% { transform: rotate(0deg); }
-          10% { transform: rotate(14deg); }
-          20% { transform: rotate(-8deg); }
-          30% { transform: rotate(14deg); }
-          40% { transform: rotate(-4deg); }
-          50% { transform: rotate(10deg); }
-          60% { transform: rotate(0deg); }
-          100% { transform: rotate(0deg); }
-        }
-        .animate-wave {
-          display: inline-block;
-          animation-name: wave;
-          animation-duration: 2.5s;
-          animation-iteration-count: infinite;
-          transform-origin: 70% 70%;
-        }
-      `}</style>
-    </motion.section>
+        <motion.div className="mt-10 flex flex-wrap gap-3" variants={fadeUp}>
+          <motion.a
+            href={`mailto:${profile.email}`}
+            className="btn-primary"
+            whileHover={prefersReduced ? undefined : { scale: 1.02 }}
+            whileTap={prefersReduced ? undefined : { scale: 0.98 }}
+            transition={quickTransition}
+          >
+            {content.cta}
+            <svg className="w-4 h-4" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth={1.5}>
+              <path strokeLinecap="round" strokeLinejoin="round" d="M13.5 4.5L21 12m0 0l-7.5 7.5M21 12H3" />
+            </svg>
+          </motion.a>
+          {content.secondaryHref && (
+            <motion.a
+              href={content.secondaryHref}
+              target={content.secondaryHref.startsWith("http") ? "_blank" : undefined}
+              rel={content.secondaryHref.startsWith("http") ? "noopener noreferrer" : undefined}
+              className="btn-ghost"
+              whileHover={prefersReduced ? undefined : { scale: 1.02 }}
+              whileTap={prefersReduced ? undefined : { scale: 0.98 }}
+              transition={quickTransition}
+            >
+              {content.secondary}
+            </motion.a>
+          )}
+        </motion.div>
+
+        <motion.div
+          className="mt-12 flex items-center gap-5"
+          variants={fadeUp}
+        >
+          {socialLinks
+            .filter((l) => (isVa ? l.label !== "Resume" && l.label !== "GitHub" : l.label !== "Resume"))
+            .map(({ href, label, icon }, i) => (
+              <motion.a
+                key={label}
+                href={href}
+                target="_blank"
+                rel="noopener noreferrer"
+                aria-label={label}
+                className="text-subtle hover:text-accent transition-colors"
+                initial={prefersReduced ? false : { opacity: 0, y: 10 }}
+                animate={{ opacity: 1, y: 0 }}
+                transition={{ ...defaultTransition, delay: 0.5 + i * 0.06 }}
+                whileHover={prefersReduced ? undefined : { y: -2 }}
+              >
+                <span className="w-5 h-5 block [&>svg]:w-5 [&>svg]:h-5">
+                  {icon}
+                </span>
+              </motion.a>
+            ))}
+        </motion.div>
+      </motion.div>
+
+      {!prefersReduced && (
+        <motion.div
+          className="absolute bottom-8 left-1/2 -translate-x-1/2 flex flex-col items-center gap-2"
+          initial={{ opacity: 0 }}
+          animate={{ opacity: 1 }}
+          transition={{ delay: 1.2, duration: 0.6 }}
+        >
+          <span className="text-[10px] font-mono text-subtle uppercase tracking-widest">Scroll</span>
+          <motion.div
+            className="w-px h-8 bg-gradient-to-b from-accent/60 to-transparent"
+            animate={{ scaleY: [1, 0.4, 1], opacity: [0.4, 1, 0.4] }}
+            transition={{ repeat: Infinity, duration: 2, ease: "easeInOut" }}
+            style={{ transformOrigin: "top" }}
+          />
+        </motion.div>
+      )}
+    </section>
   );
 }

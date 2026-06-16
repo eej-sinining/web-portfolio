@@ -1,52 +1,52 @@
 "use client";
 
-import { motion } from "framer-motion";
-import { experiences, Experience as ExperienceType } from "../../lib/data/experience"; // adjust path!
+import { useSearchParams } from "next/navigation";
+import { Suspense } from "react";
+import PageHeader from "@/components/common/PageHeader";
+import { getExperiencesForPersona } from "@/lib/data/experience";
+import { Persona } from "@/lib/persona";
 
-export default function Experience() {
+function ExperiencesContent() {
+  const searchParams = useSearchParams();
+  const side = searchParams.get("side");
+  const persona: Persona = side === "va" ? "va" : "developer";
+  const items = getExperiencesForPersona(persona);
+
   return (
-    <motion.section
-      className="max-w-6xl mx-auto py-20 px-6 pt-[calc(80px+5rem)]"
-      initial={{ opacity: 0, y: 40 }}
-      animate={{ opacity: 1, y: 0 }}
-      transition={{ duration: 0.8, ease: "easeOut" }}
-    >
-      <h1 className="text-4xl font-bold text-white mb-10 text-left pl-42">
-        Experiences
-      </h1>
-
-      <div className="max-w-3xl mx-auto relative border-l-2 border-gray-600 pl-16 space-y-10">
-        {experiences.map((exp: ExperienceType, index: number) => (
-          <div key={index} className="relative">
-            {/* Heartbeat Glow Dot */}
-            <motion.span
-              className="absolute top-2 -left-18 w-4 h-4 bg-white rounded-full border-2 border-gray-800"
-              animate={{
-                scale: [1, 1.4, 1],
-                boxShadow: [
-                  "0 0 0 0 rgba(255, 255, 255, 0)",
-                  "0 0 8px 4px rgba(255, 255, 255, 0.3)",
-                  "0 0 0 0 rgba(255, 255, 255, 0)",
-                ],
-              }}
-              transition={{
-                duration: 1.2,
-                repeat: Infinity,
-                repeatType: "loop",
-                ease: "easeInOut",
-              }}
-            ></motion.span>
-
-            <h2 className="text-xl font-semibold text-white">{exp.role}</h2>
-            {exp.company && (
-              <h3 className="text-gray-300">{exp.company}</h3>
-            )}
-            <p className="text-sm text-gray-400 mb-2">{exp.period}</p>
-
-            <p className="text-gray-300 text-lg leading-relaxed">{exp.description}</p>
-          </div>
-        ))}
+    <>
+      <PageHeader
+        label="Experience"
+        title={persona === "va" ? "VA Experience" : "Work History"}
+      />
+      <div className="max-w-3xl mx-auto px-6 pb-20">
+        <div className="space-y-0">
+          {items.map((exp, index) => (
+            <div
+              key={index}
+              className="grid grid-cols-[5rem_1fr] sm:grid-cols-[7rem_1fr] gap-4 py-6 border-b border-border-subtle last:border-0"
+            >
+              <p className="text-xs font-mono text-subtle pt-1">{exp.period}</p>
+              <div>
+                <h3 className="text-sm font-medium text-foreground">{exp.role}</h3>
+                {exp.company && (
+                  <p className="text-sm text-muted mt-0.5">{exp.company}</p>
+                )}
+                <p className="text-sm text-subtle mt-2 leading-relaxed">
+                  {exp.description}
+                </p>
+              </div>
+            </div>
+          ))}
+        </div>
       </div>
-    </motion.section>
+    </>
+  );
+}
+
+export default function ExperiencesPage() {
+  return (
+    <Suspense>
+      <ExperiencesContent />
+    </Suspense>
   );
 }

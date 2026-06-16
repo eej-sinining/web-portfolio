@@ -1,0 +1,36 @@
+---
+description: Project-specific rules auto-generated from codebase scan
+alwaysApply: true
+---
+
+# Project: EEJS Portfolio
+
+## Stack
+Next.js 16 (App Router), React 19, TypeScript, Tailwind CSS v4, Framer Motion (modals only)
+
+## Architecture
+Single-page portfolio on `/` with anchor-nav sections; dedicated sub-pages for full content (`/about`, `/projects`, `/experiences`, `/certificates`, `/contact`). Data lives in `lib/data/`.
+
+## Naming & Conventions
+- Components in `components/` grouped by `layout/`, `sections/`, `common/`
+- Section components export default, used on home page
+- Profile content centralized in `lib/data/profile.ts`
+- CSS design tokens in `app/globals.css` (`--accent`, `--surface`, etc.)
+
+## Key Constraints
+- Dark minimal theme with emerald accent (`#34d399`)
+- Max content width `max-w-3xl` for readability
+- Prefer server components; `"use client"` only when needed (modals, filters, header scroll)
+
+## Folder Structure
+```
+app/           — routes and globals.css
+components/    — layout, sections, common UI
+lib/data/      — profile, projects, experience, certificates, social links
+styles/        — legacy Galaxy background (unused)
+```
+
+## What NOT to Do
+- Don't re-enable Galaxy/Three.js background without explicit request
+- Don't add heavy animations or glassmorphism effects
+- Don't scatter profile copy across components — use `profile.ts`

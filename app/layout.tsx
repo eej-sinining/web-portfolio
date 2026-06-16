@@ -3,8 +3,11 @@ import { Geist, Geist_Mono } from "next/font/google";
 import "./globals.css";
 import Header from "@/components/layout/Header";
 import Footer from "@/components/layout/Footer";
-import GalaxyBackground from "@/styles/GalaxyBackground";
-import Script from "next/script"; // <-- ADD THIS
+import { ThemeProvider } from "@/components/common/ThemeProvider";
+import { PersonaProvider } from "@/components/common/PersonaProvider";
+import ThemeScript from "@/components/common/ThemeScript";
+import PersonaScript from "@/components/common/PersonaScript";
+import { profile } from "@/lib/data/profile";
 
 const geistSans = Geist({
   variable: "--font-geist-sans",
@@ -16,9 +19,9 @@ const geistMono = Geist_Mono({
   subsets: ["latin"],
 });
 
-export const metadata = {
-  title: 'EEJS | Portfolio',
-  description: 'Welcome to my personal portfolio showcasing my projects, experiences, and skills.',
+export const metadata: Metadata = {
+  title: `${profile.shortName} | ${profile.roles[0]}`,
+  description: profile.tagline,
 };
 
 export default function RootLayout({
@@ -27,24 +30,19 @@ export default function RootLayout({
   children: React.ReactNode;
 }) {
   return (
-    <html lang="en">
+    <html lang="en" suppressHydrationWarning>
       <body className={`${geistSans.variable} ${geistMono.variable} antialiased`}>
-        
-        {/* Load external script ON ALL PAGES */}
-        <Script src="https://www.noupe.com/embed/019acfb6e1107c088bab479e116aafd6d241.js" />
-
-        {/* Galaxy Background (Client Component) */}
-        {/* <GalaxyBackground /> */}
-
-        <div className="min-h-screen flex flex-col relative z-10">
-          <Header />
-
-          <main className="flex-1 pt-7 px-4">
-            {children}
-          </main>
-
-          <Footer />
-        </div>
+        <ThemeScript />
+        <PersonaScript />
+        <ThemeProvider>
+          <PersonaProvider>
+            <div className="min-h-screen flex flex-col">
+              <Header />
+              <main className="flex-1">{children}</main>
+              <Footer />
+            </div>
+          </PersonaProvider>
+        </ThemeProvider>
       </body>
     </html>
   );

@@ -1,14 +1,5 @@
-import Hero from '@/components/sections/Hero';
-import Projects from '@/app/projects/page';
-import Contact from '@/app/contact/page';
-
+import HomePage from "@/components/HomePage";
 
 export default function Home() {
-  return (
-    <main>
-      <Hero />
-      <Projects />
-      <Contact />
-    </main>
-  );
+  return <HomePage />;
 }

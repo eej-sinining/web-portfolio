@@ -9,17 +9,6 @@ interface ModalProps {
   children: ReactNode;
 }
 
-const backdropVariants = {
-  hidden: { opacity: 0 },
-  visible: { opacity: 1 },
-};
-
-const modalVariants = {
-  hidden: { opacity: 0, scale: 0.95 },
-  visible: { opacity: 1, scale: 1 },
-  exit: { opacity: 0, scale: 0.95 },
-};
-
 export default function Modal({ isOpen, onClose, children }: ModalProps) {
   useEffect(() => {
     function onKeyDown(e: KeyboardEvent) {
@@ -35,39 +24,30 @@ export default function Modal({ isOpen, onClose, children }: ModalProps) {
         <motion.div
           role="dialog"
           aria-modal="true"
-          className="fixed inset-0 z-50 flex items-center justify-center bg-black bg-opacity-80 p-4"
+          className="fixed inset-0 z-50 flex items-center justify-center bg-black/60 backdrop-blur-sm p-4"
           onClick={onClose}
-          variants={backdropVariants}
-          initial="hidden"
-          animate="visible"
-          exit="hidden"
+          initial={{ opacity: 0 }}
+          animate={{ opacity: 1 }}
+          exit={{ opacity: 0 }}
         >
           <motion.div
-            className="
-              bg-gray-900 text-white rounded-lg shadow-[0_0_20px_6px_rgba(255,255,255,0.3)]
-              max-w-7xl w-full max-h-[90vh] p-6 relative flex gap-8 pr-12 overflow-auto
-              backdrop-blur-sm
-            "
+            className="bg-surface border border-border rounded-xl max-w-lg w-full max-h-[85vh] p-6 relative overflow-auto"
             onClick={(e) => e.stopPropagation()}
-            variants={modalVariants}
-            initial="hidden"
-            animate="visible"
-            exit="exit"
-            transition={{ duration: 0.25, ease: "easeOut" }}
+            initial={{ opacity: 0, y: 8 }}
+            animate={{ opacity: 1, y: 0 }}
+            exit={{ opacity: 0, y: 8 }}
+            transition={{ duration: 0.2 }}
           >
             <button
-              className="
-                absolute top-4 right-4 text-white hover:text-gray-300
-                text-2xl font-bold z-50
-                transition-colors duration-200
-              "
+              className="absolute top-4 right-4 text-subtle hover:text-foreground transition-colors"
               onClick={onClose}
               aria-label="Close modal"
             >
-              ✕
+              <svg className="w-5 h-5" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth={1.5}>
+                <path strokeLinecap="round" strokeLinejoin="round" d="M6 18L18 6M6 6l12 12" />
+              </svg>
             </button>
-
-            {children}
+            <div className="pr-6">{children}</div>
           </motion.div>
         </motion.div>
       )}
