@@ -18,7 +18,7 @@ export default function ProjectsSection() {
     <>
       <Section
         id="projects"
-        label="04 — Projects"
+        label="05 — Projects"
         title="Recent Projects"
         action={
           <Link

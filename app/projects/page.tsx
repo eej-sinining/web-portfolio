@@ -3,19 +3,23 @@
 import { useState } from "react";
 import PageHeader from "@/components/common/PageHeader";
 import Modal from "@/components/common/modal";
-import { projects, Project } from "@/lib/data/project";
+import { projects, Project, ProjectTag } from "@/lib/data/project";
 
 type Category = "main" | "dev-tools";
-type Tag = "API-based" | "Web App" | "Machine Learning/AI";
 
-const ALL_TAGS: Tag[] = ["API-based", "Web App", "Machine Learning/AI"];
+const ALL_TAGS: ProjectTag[] = [
+  "API-based",
+  "Web App",
+  "Mobile App",
+  "Machine Learning/AI",
+];
 
 export default function ProjectsPage() {
   const [selectedProject, setSelectedProject] = useState<Project | null>(null);
   const [activeCategory, setActiveCategory] = useState<Category>("main");
-  const [activeTags, setActiveTags] = useState<Tag[]>([]);
+  const [activeTags, setActiveTags] = useState<ProjectTag[]>([]);
 
-  const toggleTag = (tag: Tag) => {
+  const toggleTag = (tag: ProjectTag) => {
     setActiveTags((prev) =>
       prev.includes(tag) ? prev.filter((t) => t !== tag) : [...prev, tag]
     );

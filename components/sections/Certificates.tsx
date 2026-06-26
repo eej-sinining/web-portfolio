@@ -13,7 +13,7 @@ export default function Certificates() {
   return (
     <Section
       id="certificates"
-      label="05 — Certifications"
+      label="06 — Certifications"
       title="Certifications"
       action={
         <Link

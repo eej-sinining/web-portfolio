@@ -107,12 +107,13 @@ body {
   background: var(--surface);
   border: 1px solid var(--border-subtle);
   border-radius: 0.75rem;
-  transition: border-color 0.2s ease, background 0.2s ease;
+  transition: border-color 0.2s ease, background 0.2s ease, box-shadow 0.2s ease;
 }
 
 .card:hover {
   border-color: var(--border);
   background: var(--surface-raised);
+  box-shadow: 0 8px 30px -12px color-mix(in srgb, var(--accent) 25%, transparent);
 }
 
 .btn-primary {

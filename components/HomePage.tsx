@@ -5,6 +5,7 @@ import Hero from "@/components/sections/Hero";
 import About from "@/components/sections/About";
 import Experience from "@/components/sections/Experience";
 import TechStack from "@/components/sections/TechStack";
+import DevServices from "@/components/sections/DevServices";
 import Projects from "@/components/sections/Projects";
 import Certificates from "@/components/sections/Certificates";
 import VaServices from "@/components/sections/VaServices";
@@ -48,6 +49,7 @@ export default function HomePage() {
       <AnimatePresence mode="wait">
         {isDeveloper ? (
           <motion.div key="developer-sections" {...motionProps}>
+            <DevServices />
             <TechStack />
             <Projects />
             <Certificates />

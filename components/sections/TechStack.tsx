@@ -13,7 +13,7 @@ export default function TechStack() {
   return (
     <Section
       id="stack"
-      label="03 — Stack"
+      label="04 — Stack"
       title="Tech Stack"
       action={
         <Link

@@ -11,6 +11,7 @@ import { usePersona } from "@/components/common/PersonaProvider";
 const devNavLinks = [
   { href: "#about", label: "About" },
   { href: "#experience", label: "Experience" },
+  { href: "#services", label: "Services" },
   { href: "#stack", label: "Stack" },
   { href: "#projects", label: "Projects" },
   { href: "#certificates", label: "Certs" },

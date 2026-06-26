@@ -19,3 +19,19 @@ export const techStack = {
   Database: ["PostgreSQL", "MySQL"],
   Mobile: ["Flutter"],
 };
+
+export const devServices = [
+  {
+    title: "Custom Web Applications",
+    description:
+      "Full-stack web apps tailored to your workflow — dashboards, internal tools, client portals, and SaaS products built with modern frameworks.",
+  },
+  {
+    title: "Backend Development",
+    description:
+      "RESTful APIs, database design, authentication, and server-side logic with Django, ASP.NET Core, or Node — structured for scale and maintainability.",
+  },
+];
+
+export const devServicesIntro =
+  "Available for freelance and contract work — custom web apps and backend systems built to last.";

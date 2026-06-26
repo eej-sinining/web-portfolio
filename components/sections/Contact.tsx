@@ -14,15 +14,17 @@ export default function Contact() {
   const prefersReduced = useReducedMotion();
 
   const message = isDeveloper
-    ? "Have a project in mind or just want to connect? I'm open to opportunities, collaborations, and conversations about software."
+    ? "Need a custom web app or backend built? I'm open to freelance projects and collaborations."
     : vaProfile.contactMessage;
+
+  const contactLabel = isDeveloper ? "07 — Contact" : "06 — Contact";
 
   const visibleLinks = socialLinks.filter((l) =>
     isVa ? l.label !== "Resume" && l.label !== "GitHub" : true
   );
 
   return (
-    <Section id="contact" label="06 — Contact" title="Get in Touch">
+    <Section id="contact" label={contactLabel} title="Get in Touch">
       <p className="text-muted leading-relaxed mb-8">{message}</p>
 
       <div className="space-y-4">
