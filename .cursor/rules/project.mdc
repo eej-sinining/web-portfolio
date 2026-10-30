@@ -1,36 +1,30 @@
 ---
-description: Project-specific rules auto-generated from codebase scan
+description: Project-specific rules
 alwaysApply: true
 ---
 
 # Project: EEJS Portfolio
 
 ## Stack
-Next.js 16 (App Router), React 19, TypeScript, Tailwind CSS v4, Framer Motion (modals only)
+Next.js 16 (App Router), React 19, TypeScript, Tailwind CSS v4, Framer Motion (roaming cursor, project modal and StackForge popup only)
 
 ## Architecture
-Single-page portfolio on `/` with anchor-nav sections; dedicated sub-pages for full content (`/about`, `/projects`, `/experiences`, `/certificates`, `/contact`). Data lives in `lib/data/`.
+Single-page portfolio on `/` with two personas (developer / Shopify VA); dedicated sub-pages for full content (`/about`, `/projects`, `/experiences`, `/certificates`, `/contact`). Data lives in `lib/data/`.
 
 ## Naming & Conventions
 - Components in `components/` grouped by `layout/`, `sections/`, `common/`
-- Section components export default, used on home page
-- Profile content centralized in `lib/data/profile.ts`
+- Home sections are `Card`s in a bento grid; shared list components in `components/common/` are reused by sub-pages
+- Developer copy lives in `lib/data/profile.ts`, VA copy in `lib/data/vaProfile.ts`, and matches the owner's résumé
 - CSS design tokens in `app/globals.css` (`--accent`, `--surface`, etc.)
 
-## Key Constraints
-- Dark minimal theme with emerald accent (`#34d399`)
-- Max content width `max-w-3xl` for readability
-- Prefer server components; `"use client"` only when needed (modals, filters, header scroll)
-
-## Folder Structure
-```
-app/           — routes and globals.css
-components/    — layout, sections, common UI
-lib/data/      — profile, projects, experience, certificates, social links
-styles/        — legacy Galaxy background (unused)
-```
+## Design
+- Bento cards with icon headings under a profile header; Figma-style roaming cursor that types a note for the section in view
+- Geist only; `.chip` for link/tag pills
+- Accent (emerald / amber for VA) for hover, active states and the roaming cursor
+- Max content width `max-w-4xl`
 
 ## What NOT to Do
-- Don't re-enable Galaxy/Three.js background without explicit request
-- Don't add heavy animations or glassmorphism effects
-- Don't scatter profile copy across components — use `profile.ts`
+- Don't add gradient blobs, glows, or scroll-triggered fade-ins
+- Don't write marketing copy or claims that aren't on the résumé
+- Don't re-enable the Galaxy/Three.js background without explicit request
+- Don't scatter copy across components — use the data files
