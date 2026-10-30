@@ -1,68 +1,77 @@
 export const vaProfile = {
   label: "Shopify VA",
-  roles: ["Shopify Store Builder", "E-commerce VA", "Freelancer"],
-  tagline: "Building polished Shopify stores that convert — from setup to launch.",
+  roles: ["Shopify Store Builder", "E-commerce VA"],
+  availability: "Taking Shopify projects",
+  cursorNotes: {
+    hero: ["Hi! I'm Ean", "I build Shopify stores"],
+    about: ["A year and a half on Shopify"],
+    experience: ["Aug 2022 to Dec 2023"],
+    toolkit: ["Liquid for custom sections"],
+    services: ["From setup to launch"],
+    work: ["Full builds and theme overhauls"],
+    contact: ["Tell me about your store"],
+  } as Record<string, string[]>,
+  tagline: "I set up, customize, and maintain Shopify stores.",
   about: [
-    "Before diving into software engineering, I spent over a year as a Shopify Virtual Assistant helping brands launch and grow their online stores. I know the platform inside out — not just the pretty parts, but the operational side that keeps a store running.",
-    "I handled theme customization, product catalog management, page building, and store performance optimization for multiple clients. Every store had different needs — some needed a full setup from scratch, others needed cleanup and speed improvements on existing themes.",
-    "What sets me apart is the technical edge. I understand HTML, CSS, and Liquid enough to go beyond drag-and-drop — custom sections, cleaner layouts, and fixes that theme editors alone can't solve. If you need a reliable VA who can actually build, not just click around, that's me.",
+    "Before I moved into software engineering, I spent about a year and a half as a Shopify virtual assistant, from August 2022 to December 2023, building and running stores for several clients.",
+    "The work covered theme customization, product catalogs, page building, and store speed. Some clients needed a store set up from nothing; others had an existing theme that needed cleaning up.",
+    "I know enough HTML, CSS, and Liquid to build custom sections and fix layout problems that the theme editor can't handle on its own.",
   ],
   services: [
     {
-      title: "Store Setup & Launch",
-      description: "Full Shopify store configuration — domain, payments, shipping, and go-live checklist.",
+      title: "Store setup and launch",
+      description: "Domain, payments, shipping, and the checks before a store goes live.",
     },
     {
-      title: "Theme Customization",
-      description: "Branding, layout tweaks, custom sections, and mobile-responsive design using Liquid and the theme editor.",
+      title: "Theme customization",
+      description: "Branding, layout changes, custom sections, and mobile layouts using Liquid and the theme editor.",
     },
     {
-      title: "Product & Catalog Management",
-      description: "Product uploads, variants, collections, inventory organization, and SEO-friendly listings.",
+      title: "Products and catalog",
+      description: "Product uploads, variants, collections, inventory, and listings written with search in mind.",
     },
     {
-      title: "Page & Content Building",
-      description: "Landing pages, about pages, collection pages, and policy pages that match your brand.",
+      title: "Pages and content",
+      description: "Landing, about, collection, and policy pages that match the store's branding.",
     },
     {
-      title: "Store Optimization",
-      description: "Speed improvements, image compression, app cleanup, and UX fixes to reduce bounce rates.",
+      title: "Store speed",
+      description: "Image compression, removing unused apps, and fixing slow or awkward pages.",
     },
     {
-      title: "Ongoing Store Support",
-      description: "Day-to-day VA tasks — updates, seasonal changes, promotions, and client communication.",
+      title: "Ongoing support",
+      description: "Regular updates, seasonal changes, promotions, and client communication.",
     },
   ],
   toolkit: {
     Platform: ["Shopify Admin", "Shopify CLI", "Theme Editor"],
-    "Theme Dev": ["Liquid", "HTML & CSS", "JavaScript"],
-    "Store Ops": ["Product Management", "Collections", "Inventory"],
-    Integrations: ["Payment Gateways", "Shipping Apps", "Marketing Apps"],
-    Design: ["Figma", "Canva", "Responsive Layouts"],
+    "Theme dev": ["Liquid", "HTML", "CSS", "JavaScript"],
+    "Store ops": ["Product management", "Collections", "Inventory"],
+    Integrations: ["Payment gateways", "Shipping apps", "Marketing apps"],
+    Design: ["Figma", "Canva"],
   },
   highlights: [
     {
-      name: "Full Store Builds",
+      name: "Full store builds",
       description:
-        "End-to-end Shopify store creation for clients — theme selection, branding, product setup, and launch-ready configuration.",
+        "Built stores from scratch for clients: theme choice, branding, product setup, and launch configuration.",
     },
     {
-      name: "Theme Overhauls",
+      name: "Theme overhauls",
       description:
-        "Redesigned existing stores with custom sections, improved navigation, and mobile-first layouts that boosted user experience.",
+        "Reworked existing stores with custom sections, clearer navigation, and better mobile layouts.",
     },
     {
-      name: "Catalog & Page Management",
+      name: "Catalog and page management",
       description:
-        "Managed large product catalogs, built collection pages and landing pages, and kept store content organized and up to date.",
+        "Managed large product catalogs and built the collection and landing pages around them.",
     },
     {
-      name: "Performance Tuning",
+      name: "Speed work",
       description:
-        "Optimized store load times through image compression, app audits, and code cleanup — faster stores, better conversions.",
+        "Cut store load times by compressing images, auditing installed apps, and cleaning up theme code.",
     },
   ],
   contactMessage:
-    "Need help with your Shopify store? Whether it's a full build, a theme refresh, or ongoing VA support — let's talk about what your store needs.",
-  ctaPrimary: "Discuss Your Store",
+    "If you need a Shopify store built, a theme reworked, or someone to keep a store up to date, email me.",
 };

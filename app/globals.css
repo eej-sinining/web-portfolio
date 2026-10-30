@@ -1,40 +1,44 @@
 @import "tailwindcss";
 
 :root,
+[data-theme="light"] {
+  --background: #f6f6f4;
+  --foreground: #18181b;
+  --muted: #3f3f46;
+  --subtle: #63636b;
+  --surface: #ffffff;
+  --surface-raised: #f1f1ef;
+  --border: #dedede;
+  --border-subtle: #ebebe9;
+  --accent: #047857;
+  --accent-contrast: #ffffff;
+  --accent-muted: rgba(4, 120, 87, 0.1);
+}
+
 [data-theme="dark"] {
-  --background: #09090b;
-  --foreground: #fafafa;
-  --muted: #a1a1aa;
-  --subtle: #71717a;
-  --surface: #111113;
-  --surface-raised: #18181b;
-  --border: #27272a;
-  --border-subtle: #1f1f23;
+  --background: #0b0b0c;
+  --foreground: #ececec;
+  --muted: #c4c4c8;
+  --subtle: #8f8f96;
+  --surface: #141416;
+  --surface-raised: #1c1c1f;
+  --border: #2c2c30;
+  --border-subtle: #222226;
   --accent: #34d399;
+  --accent-contrast: #04261a;
   --accent-muted: rgba(52, 211, 153, 0.12);
 }
 
-[data-theme="light"] {
-  --background: #fafafa;
-  --foreground: #09090b;
-  --muted: #52525b;
-  --subtle: #71717a;
-  --surface: #f4f4f5;
-  --surface-raised: #e4e4e7;
-  --border: #d4d4d8;
-  --border-subtle: #e4e4e7;
-  --accent: #059669;
-  --accent-muted: rgba(5, 150, 105, 0.1);
-}
-
 [data-persona="va"] {
-  --accent: #f59e0b;
-  --accent-muted: rgba(245, 158, 11, 0.12);
+  --accent: #b45309;
+  --accent-contrast: #ffffff;
+  --accent-muted: rgba(180, 83, 9, 0.1);
 }
 
-[data-theme="light"][data-persona="va"] {
-  --accent: #d97706;
-  --accent-muted: rgba(217, 119, 6, 0.1);
+[data-theme="dark"][data-persona="va"] {
+  --accent: #f59e0b;
+  --accent-contrast: #261600;
+  --accent-muted: rgba(245, 158, 11, 0.12);
 }
 
 @theme inline {
@@ -48,6 +52,7 @@
   --color-border-subtle: var(--border-subtle);
   --color-accent: var(--accent);
   --color-accent-muted: var(--accent-muted);
+  --color-accent-contrast: var(--accent-contrast);
   --font-sans: var(--font-geist-sans);
   --font-mono: var(--font-geist-mono);
 }
@@ -78,9 +83,9 @@ body {
   background: var(--background);
   color: var(--foreground);
   font-family: var(--font-geist-sans), system-ui, sans-serif;
+  font-variant-numeric: tabular-nums;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
-  transition: background 0.2s ease, color 0.2s ease;
 }
 
 ::selection {
@@ -88,32 +93,49 @@ body {
   color: var(--foreground);
 }
 
-.section-label {
-  font-family: var(--font-geist-mono), monospace;
-  font-size: 0.75rem;
-  letter-spacing: 0.08em;
-  text-transform: uppercase;
-  color: var(--accent);
+@layer components {
+  .chip {
+    display: inline-flex;
+    align-items: center;
+    gap: 0.375rem;
+    padding: 0.25rem 0.625rem;
+    font-size: 0.75rem;
+    font-weight: 500;
+    color: var(--foreground);
+    background: var(--surface);
+    border: 1px solid var(--border);
+    border-radius: 0.375rem;
+  }
+
+  a.chip {
+    transition: border-color 0.15s ease, color 0.15s ease;
+  }
+
+  a.chip:hover {
+    border-color: var(--accent);
+    color: var(--accent);
+  }
+
+  .link {
+    color: var(--foreground);
+    text-decoration: underline;
+    text-decoration-color: var(--border);
+    text-decoration-thickness: 1px;
+    text-underline-offset: 0.25em;
+    transition: text-decoration-color 0.15s ease, color 0.15s ease;
+  }
+
+  .link:hover {
+    color: var(--accent);
+    text-decoration-color: currentColor;
+  }
 }
 
-.section-title {
-  font-size: clamp(1.5rem, 3vw, 1.875rem);
-  font-weight: 600;
-  letter-spacing: -0.02em;
-  color: var(--foreground);
-}
-
+/* Used by StackForgePromo. */
 .card {
   background: var(--surface);
   border: 1px solid var(--border-subtle);
   border-radius: 0.75rem;
-  transition: border-color 0.2s ease, background 0.2s ease, box-shadow 0.2s ease;
-}
-
-.card:hover {
-  border-color: var(--border);
-  background: var(--surface-raised);
-  box-shadow: 0 8px 30px -12px color-mix(in srgb, var(--accent) 25%, transparent);
 }
 
 .btn-primary {
@@ -150,10 +172,4 @@ body {
 .btn-ghost:hover {
   border-color: var(--muted);
   background: var(--surface);
-}
-
-.divider {
-  height: 1px;
-  background: var(--border-subtle);
-  width: 100%;
 }

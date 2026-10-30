@@ -1,69 +1,54 @@
 "use client";
 
-import { motion, AnimatePresence, useReducedMotion } from "framer-motion";
+import { useRef } from "react";
 import Hero from "@/components/sections/Hero";
 import About from "@/components/sections/About";
 import Experience from "@/components/sections/Experience";
 import TechStack from "@/components/sections/TechStack";
 import DevServices from "@/components/sections/DevServices";
 import Projects from "@/components/sections/Projects";
+import Education from "@/components/sections/Education";
 import Certificates from "@/components/sections/Certificates";
 import VaServices from "@/components/sections/VaServices";
 import VaToolkit from "@/components/sections/VaToolkit";
 import VaWork from "@/components/sections/VaWork";
 import Contact from "@/components/sections/Contact";
+import RoamingCursor from "@/components/common/RoamingCursor";
 import { usePersona } from "@/components/common/PersonaProvider";
-import { quickTransition } from "@/lib/motion";
+import { profile } from "@/lib/data/profile";
+import { vaProfile } from "@/lib/data/vaProfile";
 
-const personaMotion = {
-  initial: { opacity: 0, y: 16 },
-  animate: { opacity: 1, y: 0 },
-  exit: { opacity: 0, y: -16 },
-};
-
+// Bento grid: three columns on large screens; the stack/toolkit card spans two rows.
 export default function HomePage() {
   const { isDeveloper } = usePersona();
-  const prefersReduced = useReducedMotion();
-
-  const motionProps = prefersReduced
-    ? {}
-    : {
-        ...personaMotion,
-        transition: quickTransition,
-      };
+  const containerRef = useRef<HTMLDivElement>(null);
+  const notes = isDeveloper ? profile.cursorNotes : vaProfile.cursorNotes;
 
   return (
-    <>
+    <div ref={containerRef} className="relative max-w-4xl mx-auto px-4 sm:px-6">
+      <RoamingCursor containerRef={containerRef} label="Ean" notes={notes} />
       <Hero />
-      <motion.div
-        className="divider max-w-3xl mx-auto"
-        initial={prefersReduced ? false : { scaleX: 0 }}
-        whileInView={{ scaleX: 1 }}
-        viewport={{ once: true }}
-        transition={{ duration: 0.6, ease: [0.25, 0.1, 0.25, 1] }}
-        style={{ transformOrigin: "left" }}
-      />
-      <About />
-      <Experience />
-
-      <AnimatePresence mode="wait">
+      <div className="grid gap-4 lg:grid-cols-3">
+        <About className="lg:col-span-3" />
+        <Experience className="lg:col-span-2" />
         {isDeveloper ? (
-          <motion.div key="developer-sections" {...motionProps}>
-            <DevServices />
-            <TechStack />
-            <Projects />
+          <>
+            <TechStack className="lg:row-span-2" />
+            <Education className="lg:col-span-2" />
             <Certificates />
-          </motion.div>
+            <Projects className="lg:col-span-2" />
+            <DevServices className="lg:col-span-2" />
+            <Contact />
+          </>
         ) : (
-          <motion.div key="va-sections" {...motionProps}>
-            <VaServices />
-            <VaToolkit />
-            <VaWork />
-          </motion.div>
+          <>
+            <VaToolkit className="lg:row-span-2" />
+            <VaServices className="lg:col-span-2" />
+            <VaWork className="lg:col-span-2" />
+            <Contact />
+          </>
         )}
-      </AnimatePresence>
-
-      <Contact />
-    </>
+      </div>
+    </div>
   );
 }

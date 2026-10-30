@@ -1,25 +1,22 @@
 "use client";
 
-import Section from "@/components/common/Section";
+import Card from "@/components/common/Card";
+import { UserIcon } from "@/components/common/icons";
 import { profile } from "@/lib/data/profile";
 import { vaProfile } from "@/lib/data/vaProfile";
 import { usePersona } from "@/components/common/PersonaProvider";
-import { Stagger, StaggerItem } from "@/components/common/Stagger";
 
-export default function About() {
+export default function About({ className }: { className?: string }) {
   const { isDeveloper } = usePersona();
   const paragraphs = isDeveloper ? profile.about : vaProfile.about;
-  const title = isDeveloper ? "About Me" : "About My VA Work";
 
   return (
-    <Section id="about" label="01 — About" title={title}>
-      <Stagger className="space-y-5 text-muted leading-relaxed">
+    <Card id="about" title="About Me" icon={<UserIcon />} className={className}>
+      <div className="space-y-3 text-sm text-muted leading-relaxed">
         {paragraphs.map((paragraph, i) => (
-          <StaggerItem key={i}>
-            <p>{paragraph}</p>
-          </StaggerItem>
+          <p key={i}>{paragraph}</p>
         ))}
-      </Stagger>
-    </Section>
+      </div>
+    </Card>
   );
 }

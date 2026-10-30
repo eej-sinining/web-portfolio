@@ -5,31 +5,38 @@ export interface Experience {
   company?: string;
   period: string;
   description: string;
+  highlights?: string[];
   persona: Persona;
 }
 
 export const experiences: Experience[] = [
   {
-    role: "Jr. Software Engineer",
-    company: "Aquila Softwares Corporation",
-    period: "August 2025 – Present",
+    role: "Software Engineer (Part-time)",
+    company: "Aquila Software Corporation",
+    period: "Aug 2025 – Present",
     description:
-      "Building and maintaining robust backend systems using Django and ASP.NET. Focused on API development, database design, and server-side logic.",
+      "I work across several production web applications using ASP.NET Core, Django, Next.js, TypeScript, PostgreSQL, and Docker, alongside the frontend and backend developers on each team.",
+    highlights: [
+      "GetPass (formerly Pacepoint), event management: built the ASP.NET Core backend from scratch in C#, including the core API and services, and worked with the frontend developers on integration.",
+      "Peplo, HRIS: full-stack work, with backend services in ASP.NET Core and frontend features in Next.js and TypeScript.",
+      "Bettermomsh, e-commerce: develop and maintain ASP.NET Core backend services and REST APIs as the business requirements change.",
+      "Standardized the Swagger/OpenAPI documentation across these applications.",
+    ],
     persona: "developer",
   },
   {
-    role: "Intern Backend Developer",
-    company: "Aquila Softwares Corporation",
-    period: "July 2025 – August 2025",
+    role: "Backend Developer Intern (Django)",
+    company: "Aquila Software Corporation",
+    period: "Jul 2025 – Aug 2025",
     description:
-      "Built and optimized REST APIs, improved performance, and integrated third-party services.",
+      "Built the Pacepoint event management backend from scratch with Django, PostgreSQL, and Docker. I designed the database models and the REST API behind the platform's core event features.",
     persona: "developer",
   },
   {
     role: "Shopify Store Builder VA",
-    period: "August 2022 – December 2023",
+    period: "Aug 2022 – Dec 2023",
     description:
-      "Built and maintained Shopify stores for clients — theme customization, product catalog management, page building, and store performance optimization.",
+      "Set up and maintained Shopify stores for clients: store configuration, product listings, theme customization, and page building.",
     persona: "va",
   },
 ];

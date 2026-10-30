@@ -1,26 +1,21 @@
 import Link from "next/link";
 
 interface PageHeaderProps {
-  label: string;
   title: string;
+  intro?: string;
   backHref?: string;
 }
 
-export default function PageHeader({
-  label,
-  title,
-  backHref = "/",
-}: PageHeaderProps) {
+export default function PageHeader({ title, intro, backHref = "/" }: PageHeaderProps) {
   return (
-    <div className="max-w-3xl mx-auto px-6 pt-28 pb-10">
-      <Link
-        href={backHref}
-        className="text-xs font-mono text-subtle hover:text-foreground transition-colors"
-      >
-        ← Back
+    <div className="max-w-4xl mx-auto px-4 sm:px-6 pt-12 pb-4">
+      <Link href={backHref} className="link text-sm text-subtle hover:text-accent">
+        ← {backHref === "/" ? "Home" : "Back"}
       </Link>
-      <p className="section-label mt-6 mb-2">{label}</p>
-      <h1 className="section-title">{title}</h1>
+      <h1 className="text-3xl sm:text-4xl font-bold tracking-tight text-foreground mt-6">
+        {title}
+      </h1>
+      {intro && <p className="mt-3 text-muted leading-relaxed">{intro}</p>}
     </div>
   );
 }

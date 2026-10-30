@@ -2,36 +2,51 @@ export const profile = {
   name: "Ean Endrew Jade Sinining",
   shortName: "EEJS",
   location: "Davao City, Philippines",
-  roles: ["Software Developer", "Computer Science Student", "Freelancer"],
-  tagline: "Building maintainable software that solves real problems.",
+  roles: ["Software Engineer", "Computer Science Student"],
+  tagline: "I build backend APIs and web apps with ASP.NET Core, Django, and Next.js.",
   email: "eej.sinining@gmail.com",
+  school: "University of Mindanao",
+  availability: "Open to freelance work",
+  // Speech-bubble lines for the roaming cursor, keyed by section id.
+  cursorNotes: {
+    hero: ["Hi! I'm Ean", "I build backend APIs"],
+    about: ["Backend first", "Frontend when a project needs it"],
+    experience: ["Click a role for details", "At Aquila since Jul 2025"],
+    skills: ["ASP.NET Core and Django", "PostgreSQL is my go-to"],
+    education: ["BS Computer Science at UM"],
+    certificates: ["Both earned in 2025"],
+    projects: ["Click a project for details", "pip install stackforge-cli"],
+    services: ["Need an API built?"],
+    contact: ["Email works best"],
+  } as Record<string, string[]>,
   about: [
-    "I'm a software developer from the University of Mindanao who cares about clean architecture, scalable systems, and code that still makes sense six months later.",
-    "I started with HTML, CSS, and JavaScript, then explored PHP, Laravel, Express, Flutter, and Java. Django was my first serious backend framework — it still holds a special place.",
-    "These days I'm focused on C# and ASP.NET Core for backend work, with Python as a reliable second. PostgreSQL is my go-to database. I ship software that's smart, maintainable, and worth deploying.",
+    "I'm a software engineer at Aquila Software Corporation and a Computer Science student at the University of Mindanao. I started there as a Django backend intern in July 2025 and moved to a part-time engineering role that August.",
+    "Most of my work is backend: REST APIs, database design in PostgreSQL, authentication with JWT and OAuth, and role-based access control. I've built several backends from scratch in Django and ASP.NET Core, and I also work on the frontend with Next.js and TypeScript when a project needs it.",
+    "I care about APIs other people can actually use. At work I standardized the Swagger/OpenAPI docs across several of our applications to make the APIs clearer and easier for new developers to pick up. I also wrote StackForge, a CLI that sets up a new ASP.NET Core API so I stop rebuilding the same boilerplate.",
   ],
 };
 
 export const techStack = {
-  Languages: ["Python", "C# (.NET)", "JavaScript", "Java"],
-  Backend: ["Django + DRF", "ASP.NET Core", "Express.js", "PHP + Laravel"],
-  Frontend: ["Next.js", "Tailwind CSS", "HTML & CSS"],
-  Database: ["PostgreSQL", "MySQL"],
-  Mobile: ["Flutter"],
+  Backend: ["ASP.NET Core", "Entity Framework Core", "Django", "Django REST Framework"],
+  Languages: ["C#", "Python", "TypeScript", "JavaScript"],
+  Frontend: ["Next.js", "React", "HTML", "CSS"],
+  "APIs & Auth": ["REST API design", "JWT", "OAuth", "RBAC", "Swagger / OpenAPI"],
+  Database: ["PostgreSQL", "Database design", "Schema migrations"],
+  Tools: ["Git", "GitHub", "Docker", "ClickUp", "Trello", "Agile / Scrum"],
 };
 
 export const devServices = [
   {
-    title: "Custom Web Applications",
+    title: "Web applications",
     description:
-      "Full-stack web apps tailored to your workflow — dashboards, internal tools, client portals, and SaaS products built with modern frameworks.",
+      "Dashboards, internal tools, and client portals built with Next.js and TypeScript on top of an API I build to match.",
   },
   {
-    title: "Backend Development",
+    title: "Backend and APIs",
     description:
-      "RESTful APIs, database design, authentication, and server-side logic with Django, ASP.NET Core, or Node — structured for scale and maintainability.",
+      "REST APIs in ASP.NET Core or Django with PostgreSQL, authentication, role-based access, and Swagger docs your frontend team can work from.",
   },
 ];
 
 export const devServicesIntro =
-  "Available for freelance and contract work — custom web apps and backend systems built to last.";
+  "I take on freelance and contract work outside my part-time role.";

@@ -1,38 +1,24 @@
 import PageHeader from "@/components/common/PageHeader";
-import { profile } from "@/lib/data/profile";
-import { techStack } from "@/lib/data/profile";
+import Card from "@/components/common/Card";
+import ChipGroups from "@/components/common/ChipGroups";
+import { LayersIcon, UserIcon } from "@/components/common/icons";
+import { profile, techStack } from "@/lib/data/profile";
 
 export default function AboutPage() {
   return (
     <>
-      <PageHeader label="About" title="About Me" />
-      <div className="max-w-3xl mx-auto px-6 pb-20">
-        <div className="space-y-5 text-muted leading-relaxed mb-16">
-          {profile.about.map((paragraph, i) => (
-            <p key={i}>{paragraph}</p>
-          ))}
-        </div>
-
-        <h2 className="text-sm font-medium text-foreground mb-8">Technologies</h2>
-        <div className="space-y-8">
-          {Object.entries(techStack).map(([category, items]) => (
-            <div key={category}>
-              <h3 className="text-xs font-mono text-subtle uppercase tracking-wider mb-3">
-                {category}
-              </h3>
-              <div className="flex flex-wrap gap-2">
-                {items.map((tech) => (
-                  <span
-                    key={tech}
-                    className="px-3 py-1.5 text-sm text-muted bg-surface border border-border-subtle rounded-md"
-                  >
-                    {tech}
-                  </span>
-                ))}
-              </div>
-            </div>
-          ))}
-        </div>
+      <PageHeader title="About" />
+      <div className="max-w-4xl mx-auto px-4 sm:px-6 space-y-4">
+        <Card id="about" title="About Me" icon={<UserIcon />}>
+          <div className="space-y-3 text-sm text-muted leading-relaxed">
+            {profile.about.map((paragraph, i) => (
+              <p key={i}>{paragraph}</p>
+            ))}
+          </div>
+        </Card>
+        <Card id="skills" title="Tech Stack" icon={<LayersIcon />}>
+          <ChipGroups groups={techStack} />
+        </Card>
       </div>
     </>
   );

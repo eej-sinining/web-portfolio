@@ -7,7 +7,6 @@ import { ThemeProvider } from "@/components/common/ThemeProvider";
 import { PersonaProvider } from "@/components/common/PersonaProvider";
 import ThemeScript from "@/components/common/ThemeScript";
 import PersonaScript from "@/components/common/PersonaScript";
-import AmbientBackground from "@/components/common/AmbientBackground";
 import StackForgePromo from "@/components/common/StackForgePromo";
 import { profile } from "@/lib/data/profile";
 
@@ -22,7 +21,7 @@ const geistMono = Geist_Mono({
 });
 
 export const metadata: Metadata = {
-  title: `${profile.shortName} | ${profile.roles[0]}`,
+  title: `${profile.name} | ${profile.roles[0]}`,
   description: profile.tagline,
 };
 
@@ -33,13 +32,14 @@ export default function RootLayout({
 }) {
   return (
     <html lang="en" suppressHydrationWarning>
-      <body className={`${geistSans.variable} ${geistMono.variable} antialiased`}>
+      <body
+        className={`${geistSans.variable} ${geistMono.variable} antialiased`}
+      >
         <ThemeScript />
         <PersonaScript />
         <ThemeProvider>
           <PersonaProvider>
-            <AmbientBackground />
-            <div className="min-h-screen flex flex-col relative">
+            <div className="min-h-screen flex flex-col">
               <Header />
               <main className="flex-1">{children}</main>
               <Footer />

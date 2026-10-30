@@ -2,10 +2,15 @@
 
 import { useState } from "react";
 import PageHeader from "@/components/common/PageHeader";
-import Modal from "@/components/common/modal";
-import { projects, Project, ProjectTag } from "@/lib/data/project";
+import ProjectList from "@/components/common/ProjectList";
+import { projects, ProjectTag } from "@/lib/data/project";
 
 type Category = "main" | "dev-tools";
+
+const CATEGORY_LABELS: Record<Category, string> = {
+  main: "Projects",
+  "dev-tools": "Developer tools",
+};
 
 const ALL_TAGS: ProjectTag[] = [
   "API-based",
@@ -14,8 +19,15 @@ const ALL_TAGS: ProjectTag[] = [
   "Machine Learning/AI",
 ];
 
+function filterButtonClass(active: boolean) {
+  return `transition-colors ${
+    active
+      ? "text-foreground font-medium underline underline-offset-4 decoration-accent"
+      : "text-subtle hover:text-foreground"
+  }`;
+}
+
 export default function ProjectsPage() {
-  const [selectedProject, setSelectedProject] = useState<Project | null>(null);
   const [activeCategory, setActiveCategory] = useState<Category>("main");
   const [activeTags, setActiveTags] = useState<ProjectTag[]>([]);
 
@@ -40,101 +52,46 @@ export default function ProjectsPage() {
 
   return (
     <>
-      <PageHeader label="Projects" title="All Projects" />
-      <div className="max-w-3xl mx-auto px-6 pb-20">
-        <div className="flex flex-col sm:flex-row sm:items-center gap-4 mb-8">
-          <div className="flex rounded-lg border border-border-subtle overflow-hidden shrink-0">
-            {(["main", "dev-tools"] as Category[]).map((cat) => (
+      <PageHeader title="Projects" />
+      <div className="max-w-4xl mx-auto px-4 sm:px-6 pt-4">
+        <div className="space-y-2 mb-8 text-sm">
+          <div className="flex flex-wrap gap-x-4 gap-y-1">
+            {(Object.keys(CATEGORY_LABELS) as Category[]).map((cat) => (
               <button
                 key={cat}
                 onClick={() => setActiveCategory(cat)}
-                className={`px-4 py-2 text-xs font-medium transition-colors ${
-                  activeCategory === cat
-                    ? "bg-foreground text-background"
-                    : "text-muted hover:text-foreground"
-                }`}
+                aria-pressed={activeCategory === cat}
+                className={filterButtonClass(activeCategory === cat)}
               >
-                {cat === "main" ? "Developer" : "Personal"}
+                {CATEGORY_LABELS[cat]}
               </button>
             ))}
           </div>
-
-          <div className="flex flex-wrap gap-2">
+          <div className="flex flex-wrap gap-x-4 gap-y-1 text-xs">
             {ALL_TAGS.map((tag) => (
               <button
                 key={tag}
                 onClick={() => toggleTag(tag)}
-                className={`px-3 py-1 rounded-md text-xs border transition-colors ${
-                  activeTags.includes(tag)
-                    ? "bg-accent-muted text-accent border-accent/30"
-                    : "border-border-subtle text-subtle hover:text-muted"
-                }`}
+                aria-pressed={activeTags.includes(tag)}
+                className={filterButtonClass(activeTags.includes(tag))}
               >
                 {tag}
               </button>
             ))}
             {activeTags.length > 0 && (
-              <button
-                onClick={() => setActiveTags([])}
-                className="px-3 py-1 text-xs text-subtle hover:text-foreground transition-colors"
-              >
+              <button onClick={() => setActiveTags([])} className="link text-subtle hover:text-accent">
                 Clear
               </button>
             )}
           </div>
         </div>
 
-        <div className="space-y-3">
-          {filteredProjects.length > 0 ? (
-            filteredProjects.map((project) => (
-              <button
-                key={project.name}
-                onClick={() => setSelectedProject(project)}
-                className="card w-full text-left p-5 group"
-              >
-                <h3 className="text-sm font-medium text-foreground group-hover:text-accent transition-colors">
-                  {project.name}
-                </h3>
-                <p className="text-sm text-subtle mt-1.5 line-clamp-2 leading-relaxed">
-                  {project.description.split("\n")[0]}
-                </p>
-                {project.tags && (
-                  <div className="flex gap-2 mt-3">
-                    {project.tags.map((tag) => (
-                      <span key={tag} className="text-[10px] font-mono uppercase tracking-wider text-subtle">
-                        {tag}
-                      </span>
-                    ))}
-                  </div>
-                )}
-              </button>
-            ))
-          ) : (
-            <p className="text-sm text-subtle">No projects match the selected filters.</p>
-          )}
-        </div>
-      </div>
-
-      <Modal isOpen={!!selectedProject} onClose={() => setSelectedProject(null)}>
-        {selectedProject && (
-          <div className="space-y-4">
-            <h2 className="text-xl font-semibold text-foreground">{selectedProject.name}</h2>
-            <div className="text-sm text-muted leading-relaxed whitespace-pre-wrap max-h-[50vh] overflow-y-auto">
-              {selectedProject.description}
-            </div>
-            {selectedProject.link && selectedProject.link !== "#" && (
-              <a
-                href={selectedProject.link}
-                target="_blank"
-                rel="noopener noreferrer"
-                className="btn-primary inline-flex"
-              >
-                Visit Project
-              </a>
-            )}
-          </div>
+        {filteredProjects.length > 0 ? (
+          <ProjectList projects={filteredProjects} />
+        ) : (
+          <p className="text-sm text-subtle">No projects match these filters.</p>
         )}
-      </Modal>
+      </div>
     </>
   );
 }
