@@ -42,7 +42,7 @@ export const socialLinks : SocialLink[] = [
       ),
     },
     {
-      href: "https://drive.google.com/file/d/1bKwMbw8Wap5YCrNjUclMrfrDJY1qy23D/view?usp=drive_link",
+      href: "https://drive.google.com/file/d/10dHelZJK3o73QKAsPvhF1a1TbCtna5se/view?usp=sharing",
       label: "Resume",
       icon: (
         <svg
